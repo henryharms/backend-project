@@ -19,7 +19,7 @@ _connect() {
   }
 }
 
-function dbSuccess(){
+function dbSuccess() {
   console.log('Database connection successful')
 }
 
