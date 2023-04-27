@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const userModel = require('./models/Nuevan')
+const userModel = require('./models/PlayerData.js')
 // this is the thing that gets the information from the schema or menu the connection 
 
 const server = '127.0.0.1:27017';
