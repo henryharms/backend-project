@@ -7,12 +7,14 @@ const SettingSchema = new Schema({
     // Simple declaration of datatype that will be used:
     displayMode:{
         type: String,
-        enum: ['light','dark']
+        enum: ['light','dark'],
+        default:'light'
     },
-    sound: Boolean,
+    sound:{type:Boolean,default:true},
     language:{
         type: String,
-        enum: ['English']
+        enum: ['English','Spanish'],
+        default: 'English'
     }
 
 });

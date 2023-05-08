@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
 
-// const ClicksSchema = require('../models/Clicks.js')
 const PlayerSchema = require('../models/PlayerData.js')
 const SettingSchema = require('../models/PlayerData.js')
 
@@ -65,13 +64,13 @@ router.post('/player-add', (req, res) => {
     totalClicks:req.body.totalClicks,
     clicksPerSecond:req.body.clicksPerSecond,
     timeSinceClick:req.body.timeSinceClick,
-    settings: new SettingSchema({ displayMode:'light',sound:'true',language:'English'})
+    settings: {}
   })
   // console.log(req.body.name)
   // PlayerSchema.create(req.body)
   player.save()
-  .then(player => {
-    console.log(player)
+  .then(created_player => {
+    console.log(created_player)
     res.json("added")
   })
   .catch(err => {
@@ -101,51 +100,18 @@ router.delete('/player-delete/:id', (req, res) => {
   })
 })
 
-
-
-// router.post('/settings-add', (req, res) => {
-  // const settings = new SettingSchema({
-  //   displayMode:req.body.displayMode,
-  //   sound:req.body.sound,
-  //   language:req.body.language
-  // })
-//   settings.save()
-//   .then(settings => {
-//     console.log(settings)
-//     res.json("added")
-//   })
-//   .catch(err => {
-//     console.error(err)
-//     res.json(err)
-//   })
-// })
-
-// router.put('/settings-update/:id', (req, res) => {
-//   PlayerSchema.findByIdAndUpdate(req.params.id, req.body)
-//     .then(updated => {
-//       // returns the previously saved model
-//       res.send(updated)
-//     })
-//     .catch(err => {
-//       res.json(err)
-//     })
-// })
-
-router.put('/:playername/update-settings', (req, res) => {
-  const new_settings = new SettingSchema({
+router.put('/:id/update-settings', (req, res) => {
+  new_settings = {
     displayMode:req.body.displayMode,
     sound:req.body.sound,
     language:req.body.language
-  })
-  console.log("AND HIS NAME IS")
-  console.log(req.params.playername)
-  PlayerSchema.findOneAndUpdate({name:req.params.playername}, {settings:new_settings})
+  }
+  PlayerSchema.findByIdAndUpdate(req.params.id, {settings:new_settings})
     .then(updated => {
       // returns the previously saved model
       console.log('WE GOT IT')
       console.log(new_settings)
       res.send(updated)
-      console.log(PlayerSchema.findOne({name:req.params.playername}))
     })
     .catch(err => {
       res.json(err)
