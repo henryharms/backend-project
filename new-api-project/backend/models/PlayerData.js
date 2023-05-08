@@ -3,18 +3,40 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-// create a schema
-const playerSchema = new Schema({
+const SettingSchema = new Schema({
     // Simple declaration of datatype that will be used:
-    name:{type:String, unique:true},
+    displayMode:{
+        type: String,
+        enum: ['light','dark']
+    },
+    sound: Boolean,
+    language:{
+        type: String,
+        enum: ['English']
+    }
+
+});
+
+
+// create a schema
+const PlayerSchema = new Schema({
+    // Simple declaration of datatype that will be used:
+    name:String,
 
     totalClicks: Number,
 
     clicksPerSecond: Number,
 
-    timeSinceClick: Date,
+    timeSinceClick: Number,
+
+    settings:{
+        type:SettingSchema
+    },
 
 });
 
 
-module.exports = mongoose.model("PlayerData", playerSchema);
+
+
+module.exports = mongoose.model("Settings", SettingSchema);
+module.exports = mongoose.model("PlayerData", PlayerSchema);

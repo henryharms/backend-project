@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 // create a schema
-const clicksSchema = new Schema({
+const ClicksSchema = new Schema({
     // Simple declaration of datatype that will be used:
     value: Number,
  
@@ -13,4 +13,4 @@ const clicksSchema = new Schema({
 });
 
 
-module.exports = mongoose.model("Clicks", clicksSchema);
+module.exports = mongoose.model("Clicks", ClicksSchema);

@@ -1,6 +1,3 @@
-//get the things we need
-//server file were we define different routes or urls
-//define base route
 const express = require('express');
 const bodyParser = require('body-parser')
 const cors = require('cors')
