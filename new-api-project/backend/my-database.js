@@ -13,7 +13,8 @@ class Database {
 _connect() {
      mongoose.connect(`mongodb://${server}/${playerDB}`, { useNewUrlParser: true, useUnifiedTopology: true })
        .then(() => {
-        mongoose.connection.db.dropDatabase()
+        // resets database on start
+        // mongoose.connection.db.dropDatabase()
         dbSuccess()
       })
        .catch(err => {
