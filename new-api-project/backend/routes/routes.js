@@ -66,7 +66,7 @@ router.post('/player-add', (req, res) => {
     timeSinceClick:req.body.timeSinceClick,
     settings: {}
   })
-  // console.log(req.body.name)
+  console.log(req.body.name)
   // PlayerSchema.create(req.body)
   player.save()
   .then(created_player => {
@@ -79,7 +79,7 @@ router.post('/player-add', (req, res) => {
   })
 })
 
-router.put('/player-update/:id', (req, res) => {
+router.put('/player-update-id/:id', (req, res) => {
   PlayerSchema.findByIdAndUpdate(req.params.id, req.body)
     .then(updated => {
       // returns the previously saved model
@@ -89,6 +89,20 @@ router.put('/player-update/:id', (req, res) => {
       res.json(err)
     })
 })
+
+router.put('/player-update-name/:name', (req, res) => {
+  PlayerSchema.findOneAndUpdate({ name: req.params.name }, req.body)
+    .then(updated => {
+      // returns the previously saved model
+      res.send(updated)
+    })
+    .catch(err => {
+      res.json(err)
+    })
+})
+
+
+
 
 router.delete('/player-delete/:id', (req, res) => {
   PlayerSchema.findByIdAndDelete(req.params.id)
