@@ -13,7 +13,8 @@ async function fetchPlayerData(name){
 }
 
 async function createPlayer(name) {
-  const data = {name}
+  console.log("new player created")
+  const data = {name, totalClicks:0}
   const response = await fetch(`${apiUrl}/player-add`, {
     method: "POST", // *GET, POST, PUT, DELETE, etc.
     mode: "cors", // no-cors, *cors, same-origin

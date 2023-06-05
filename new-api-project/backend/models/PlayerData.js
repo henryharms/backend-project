@@ -25,7 +25,7 @@ const PlayerSchema = new Schema({
     // Simple declaration of datatype that will be used:
     name:String,
 
-    totalClicks: Number,
+    totalClicks:{ type:Number, default:0},
 
     clicksPerSecond: Number,
 
